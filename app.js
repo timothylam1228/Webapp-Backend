@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 // async function main() {
 
 //   const MongoClient = require('mongodb').MongoClient;
@@ -17,3 +18,16 @@
 // }
 
 // main().catch(console.error);
+=======
+const express = require('express')
+const app = express()
+const port = 3001
+
+app.get('/api', (req, res) => {
+  res.json({message: "Heello"})
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
+>>>>>>> Stashed changes

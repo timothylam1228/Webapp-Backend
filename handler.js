@@ -1,15 +1,14 @@
+'use strict';
+
 const connectToDB = require('./database')
-
-
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
 const register = require('./controller/register')
 
 
-module.exports.create = async (events) => {
+module.exports.create = async (event) => {
   const db = await connectToDB.connectToDB();
   const collection = await db.collection("User");
-  const newuser = { register }
+
+  const newuser = { "register": register }
   const users = await collection.insertOne(newuser);
 
   return {
@@ -17,7 +16,7 @@ module.exports.create = async (events) => {
     body: JSON.stringify(
       {
         message: 'Go Serverless v1.0! Your function executed successfully!',
-        user: users,
+        user: newuser,
       },
       null,
       2

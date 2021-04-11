@@ -6,25 +6,25 @@ const register = (req, res, next) => {
         if (err) {
             res.json({ error: err })
         }
-    })
 
-    let user = new User({
-        email: req.body.email,
-        name: req.body.name,
-        password: hashedPassword
-    })
+        let user = new User({
+            email: req.body.email,
+            name: req.body.name,
+            password: hashedPassword
+        })
 
-    user.save()
-        .then(user => {
-            res.json({
-                message: 'User Added!'
+        user.save()
+            .then(user => {
+                res.json({
+                    message: 'User Added!'
+                })
             })
-        })
-        .catch(error => {
-            res.json({
-                message: 'Error occured!'
+            .catch(error => {
+                res.json({
+                    message: 'Error occured!'
+                })
             })
-        })
+    })
 }
 
 module.exports = { register }

@@ -1,39 +1,17 @@
-'use strict';
+const connectToDB = require('./database')
 
-const MongoClient = require('mongodb').MongoClient;
-const url = "mongodb+srv://admin:JE1BPKXM0KnAYbYy@cluster1.u7wxz.mongodb.net/User?retryWrites=true&w=majority";
+
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const register = require('./controller/register')
 
-module.exports.create = async (event) => {
 
+module.exports.create = async (events) => {
+  const db = await connectToDB();
+  const collection = await db.collection("User");
+  const users = await collection.find({}).toArray();
+  res.status(200).json({ users });
 
-  MongoClient.connect(url, function (err, db) {
-    db.createUser({
-
-    })
-    if (err) throw err;
-    var dbo = db.db("Webapp");
-    var new_user = (register.register)
-    dbo.collection("User").insertOne(new_user, function (err, res) {
-      if (err) throw err;
-      console.log("1 user inserted");
-      db.close();
-    })
-  });
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: 'Go Serverless v1.0! Your function executed successfully!',
-        input: event,
-      },
-      null,
-      2
-    ),
-  };
 
   // Use this code if you don't use the http event with the LAMBDA-PROXY integration
   // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };

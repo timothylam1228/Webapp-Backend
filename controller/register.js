@@ -9,6 +9,8 @@ const register = (req) => {
         if (err) {
             res.json({ error: err })
         }
+        console.log(req)
+
         let user = new User({
             email: req.body.email,
             name: req.body.name,

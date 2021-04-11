@@ -67,7 +67,7 @@ module.exports.login = async (event) => {
 
 module.exports.add_item = async (event) => {
   const db = await connectToDB.connectToDB();
-  const collection = await db.collection("Item");
+  const collection = await db.collection("Product");
   const added_item = await add_item.add(event)
   console.log(added_item)
   const users = await collection.insertOne(added_item);
@@ -76,7 +76,7 @@ module.exports.add_item = async (event) => {
 
 module.exports.edit_item = async (event) => {
   const db = await connectToDB.connectToDB();
-  const collection = await db.collection("Item");
+  const collection = await db.collection("Product");
   const edit_item = await edit_item.edit(event)
   console.log(edit_item)
   const users = await collection.updateOne(edit_item);

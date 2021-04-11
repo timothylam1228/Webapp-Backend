@@ -2,7 +2,7 @@
 
 const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb+srv://admin:JE1BPKXM0KnAYbYy@cluster1.u7wxz.mongodb.net/User?retryWrites=true&w=majority";
-const User = require('models/user')
+const User = require('./models/user.js')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 

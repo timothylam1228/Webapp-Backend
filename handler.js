@@ -5,8 +5,7 @@ const url = "mongodb+srv://admin:JE1BPKXM0KnAYbYy@cluster1.u7wxz.mongodb.net/Use
 const User = require('./models/user.js')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const register = require('./models/register.js')
-
+const register = require('./controller/register')
 module.exports.create = async (event) => {
 
 
@@ -16,7 +15,7 @@ module.exports.create = async (event) => {
     })
     if (err) throw err;
     var dbo = db.db("Webapp");
-    var new_user = (register)
+    var new_user = (register.register)
     dbo.collection("User").insertOne(new_user, function (err, res) {
       if (err) throw err;
       console.log("1 user inserted");

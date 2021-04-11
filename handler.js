@@ -11,6 +11,9 @@ module.exports.create = async (event) => {
 
 
   MongoClient.connect(url, function (err, db) {
+    db.createUser({
+      
+    })
     if (err) throw err;
     var dbo = db.db("Webapp");
     var new_user = module.exports = { register }

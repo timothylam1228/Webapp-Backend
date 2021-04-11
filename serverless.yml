@@ -70,6 +70,35 @@ functions:
          path: /users/create
          method: post
          cors: true
+  get:
+    handler: handler.get
+    events:
+     - httpApi:
+         path: /users/get
+         method: get
+         cors: true
+  login:
+    handler: handler.login
+    events:
+     - httpApi:
+         path: /users/login
+         method: post
+         cors: true
+  add_item:
+    handler: handler.add_item
+    events:
+     - httpApi:
+         path: /users/add_item
+         method: post
+         cors: true 
+  edit_item:
+    handler: handler.edit_item
+    events:
+     - httpApi:
+         path: /users/edit_item
+         method: post
+         cors: true        
+
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)

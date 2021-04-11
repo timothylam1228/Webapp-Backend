@@ -4,6 +4,8 @@ const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb+srv://admin:JE1BPKXM0KnAYbYy@cluster1.u7wxz.mongodb.net/User?retryWrites=true&w=majority";
 
 module.exports.create = async (event) => {
+
+
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;
     var dbo = db.db("Webapp");

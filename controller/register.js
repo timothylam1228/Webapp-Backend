@@ -1,3 +1,6 @@
+const User = require('../models/user')
+
+
 const register = (req, res, next) => {
     bcrypt.hash(req.body.password, 10, function (err, hashedPassword) {
         if (err) {
@@ -7,6 +10,7 @@ const register = (req, res, next) => {
 
     let user = new User({
         email: req.body.email,
+        name: req.body.name,
         password: hashedPassword
     })
     user.save()

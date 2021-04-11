@@ -68,7 +68,7 @@ functions:
     events:
      - httpApi:
          path: /users/create
-         method: get
+         method: post
          cors: true
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}

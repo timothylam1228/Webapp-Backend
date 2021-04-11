@@ -5,6 +5,9 @@ const userSchema = new Schema({
     email: {
         type: 'string'
     },
+    name: {
+        type: 'string'
+    },
     password: {
         type: 'string'
     }

@@ -13,6 +13,7 @@ const register = (req, res, next) => {
         name: req.body.name,
         password: hashedPassword
     })
+
     user.save()
         .then(user => {
             res.json({

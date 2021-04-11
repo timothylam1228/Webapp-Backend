@@ -2,12 +2,13 @@ const User = require('../models/user')
 const bcrypt = require('bcryptjs')
 
 
-const register = (req, res, next) => {
+const register = (req) => {
+    console.log(req)
+
     bcrypt.hash(req.body.password, 10, function (err, hashedPassword) {
         if (err) {
             res.json({ error: err })
         }
-
         let user = new User({
             email: req.body.email,
             name: req.body.name,

@@ -97,7 +97,6 @@ module.exports.login = async (event) => {
   const seek = await collection.findOne({
     email: body.email,
   })
-  console.log(seek)
 
   if (seek) {
     console.log("Account found")
@@ -110,6 +109,10 @@ module.exports.login = async (event) => {
         statusCode: 200,
         body: JSON.stringify(
           {
+            body:{
+              email:seek.email,
+              name: seek.name
+            },
             message: 'Sucess',
           },
           null,

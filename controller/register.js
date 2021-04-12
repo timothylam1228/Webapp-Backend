@@ -2,8 +2,8 @@ const User = require('../models/user')
 const bcrypt = require('bcryptjs')
 
 
-const register = (req) => {
-    const body = JSON.parse(req.body);
+const register = (body) => {
+    // const body = JSON.parse(req.body);
     const saltRounds = 5;
     const salt = bcrypt.genSaltSync(saltRounds);
     const hash = bcrypt.hashSync(body.password, salt);

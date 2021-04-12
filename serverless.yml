@@ -99,13 +99,15 @@ functions:
          path: /users/edit_item
          method: post
          cors: true        
+
   create-checkout-session:
-    handler: create-checkout-session
+    handler: create_checkout_session
     events:
      - httpApi:
-        path: /create-checkout-session
+        path: /create_checkout_session
         method: post
         cors: true
+        
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)

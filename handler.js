@@ -166,6 +166,8 @@ module.exports.edit_item = async (event) => {
 }
 
 module.exports.create_checkout_session = async (event) => {
+  console.log(event)
+  const stripe = require('stripe')('sk_test_51IeNf0KCNLyTjKjF9mpdpCIMuCelbtKuqZggAozfXOVwPeQuIGDZ7Bi1DdKumWt3JIaCC79ZiOklC0FGA5fyx90A00ec9sfS9L');
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
     line_items: [
@@ -182,8 +184,9 @@ module.exports.create_checkout_session = async (event) => {
       },
     ],
     mode: 'payment',
-    success_url: `${YOUR_DOMAIN}?success=true`,
-    cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+    success_url: 'http://localhost:3001/home',
+    cancel_url: 'http://localhost:3001/home',
   });
-  res.json({ id: session.id });
+  
+  return ({ id: session.id });
 }

@@ -16,5 +16,4 @@ const register = (body) => {
     return user
 }
 
-module.exports = { register }
-
+module.exports = {register}

@@ -101,12 +101,12 @@ functions:
          method: post
          cors: true
 
-  add_item:
-    handler: item_handler.add_item
+  get_item:
+    handler: item_handler.getitem
     events:
      - httpApi:
-         path: /admin/add_item
-         method: post
+         path: /admin/get_item
+         method: get
          cors: true 
 
   edit_item:

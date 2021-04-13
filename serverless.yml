@@ -84,7 +84,7 @@ functions:
          path: /users/login
          method: post
          cors: true
-         
+
   admin_create:
     handler: handler.adminCreate
     events:
@@ -102,10 +102,10 @@ functions:
          cors: true
 
   add_item:
-    handler: handler.add_item
+    handler: item_handler.add_item
     events:
      - httpApi:
-         path: /users/add_item
+         path: /admin/add_item
          method: post
          cors: true 
 
@@ -124,7 +124,6 @@ functions:
         path: /create_checkout_session
         method: post
         cors: true
-        
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)

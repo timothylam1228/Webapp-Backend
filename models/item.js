@@ -10,6 +10,9 @@ const itemSchema = new Schema({
     },
     quantity: {
         type: 'Number'
+    },
+    imagename:{
+        string: 'string'
     }
 }, { timestamp: true })
 

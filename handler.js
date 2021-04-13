@@ -8,6 +8,7 @@ const add_item = require('./controller/add_item')
 const edit_item = require('./controller/edit_item')
 
 var bodyParser = require('body-parser')
+var jwt = require('jsonwebtoken');
 
 
 module.exports.create = async (event) => {
@@ -87,29 +88,27 @@ module.exports.login = async (event) => {
   const db = await connectToDB.connectToDB();
   const collection = await db.collection("User");
   const body = JSON.parse(event.body);
-
-  // console.log(body.email)
-  // console.log(body.password)
-
-
   const seek = await collection.findOne({
     email: body.email,
   })
 
   if (seek) {
     console.log("Account found")
-    // console.log(seek.password)
-    // console.log(body.password)
-
     if (bcrypt.compareSync(body.password, seek.password)) {
       console.log("Login Sucess")
+      const token = jwt.sign(
+        {
+        name: seek.name,
+        type: "user"
+        },
+        'Webapp',
+        { expiresIn: '24h' });
       return {
         statusCode: 200,
         body: JSON.stringify(
           {
-            body:{
-              email:seek.email,
-              name: seek.name
+            body:{          
+              token:token,
             },
             message: 'Sucess',
           },
@@ -194,13 +193,19 @@ module.exports.adminlogin = async (event) => {
 
   if (seek) {
     if (bcrypt.compareSync(body.password, seek.password)) {
-      console.log("Login Sucess")
+      const token = jwt.sign(
+        { 
+        username: body.username,
+        type: "admin"
+        },
+        'Webapp',
+        { expiresIn: '24h' });
       return {
         statusCode: 200,
         body: JSON.stringify(
           {
             body:{
-              username:seek.username,
+              token:token,
             },
             message: 'Sucess',
           },
@@ -228,6 +233,39 @@ module.exports.adminlogin = async (event) => {
       body: JSON.stringify(
         {
           message: 'Admin Account Not Existed',
+        },
+        null,
+        2
+      ),
+    };
+  }
+}
+
+module.exports.getAdmin = async (event) => {
+  const db = await connectToDB.connectToDB();
+  const collection = await db.collection("Admin");
+  const seek = await collection.findOne({
+    token: ""
+  })
+  if (seek) {
+    console.log("found");
+    return {
+      statusCode: 200,
+      body: JSON.stringify(
+        {
+          message: 'successfully!',
+        },
+        null,
+        2
+      ),
+    };
+  } else {
+    console.log("Not existed");
+    return {
+      statusCode: 400,
+      body: JSON.stringify(
+        {
+          message: ' Fail!',
         },
         null,
         2

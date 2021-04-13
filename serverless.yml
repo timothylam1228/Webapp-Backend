@@ -84,6 +84,23 @@ functions:
          path: /users/login
          method: post
          cors: true
+         
+  admin_create:
+    handler: handler.adminCreate
+    events:
+      - httpApi:
+          path: /admin/register
+          method: post
+          cors: true
+
+  admin_login:
+    handler: handler.adminlogin
+    events:
+     - httpApi:
+         path: /admin/login
+         method: post
+         cors: true
+
   add_item:
     handler: handler.add_item
     events:

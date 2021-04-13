@@ -3,7 +3,7 @@
 const connectToDB = require('./database')
 const register = require('./controller/register')
 const bcrypt = require('bcryptjs');
-
+const adminRegister = require('./controller/adminRegister')
 const add_item = require('./controller/add_item')
 const edit_item = require('./controller/edit_item')
 
@@ -15,7 +15,6 @@ module.exports.create = async (event) => {
   const collection = await db.collection("User");
   const body = JSON.parse(event.body);
 
-  console.log(body.email)
   const seek = await collection.findOne({
     email: body.email
   })
@@ -33,7 +32,6 @@ module.exports.create = async (event) => {
     };
   } else {
     const newuser = register.register(body);
-    console.log(newuser)
     const users = await collection.insertOne(newuser);
 
     return {
@@ -64,7 +62,7 @@ module.exports.get = async (event) => {
       statusCode: 200,
       body: JSON.stringify(
         {
-          message: ' successfully!',
+          message: 'successfully!',
         },
         null,
         2
@@ -146,6 +144,98 @@ module.exports.login = async (event) => {
     };
   }
 }
+
+
+module.exports.adminCreate = async (event) => {
+  const db = await connectToDB.connectToDB();
+  const collection = await db.collection("Admin");
+  const body = JSON.parse(event.body);
+  const seek = await collection.findOne({
+    username: body.username
+  })
+  console.log(seek)
+  if (seek) {
+    return {
+      statusCode: 200,
+      body: JSON.stringify(
+        {
+          message: 'Used',
+        },
+        null,
+        2
+      ),
+    };
+  } else {
+    const newuser = adminRegister.adminRegister(body);
+    console.log(newuser)
+    const users = await collection.insertOne(newuser);
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify(
+        {
+          message: 'Registered',
+        },
+        null,
+        2
+      ),
+    };
+  }
+}
+
+module.exports.adminlogin = async (event) => {
+  const db = await connectToDB.connectToDB();
+  const collection = await db.collection("Admin");
+  const body = JSON.parse(event.body);
+
+  const seek = await collection.findOne({
+    username: body.username,
+  })
+
+  if (seek) {
+    if (bcrypt.compareSync(body.password, seek.password)) {
+      console.log("Login Sucess")
+      return {
+        statusCode: 200,
+        body: JSON.stringify(
+          {
+            body:{
+              username:seek.username,
+            },
+            message: 'Sucess',
+          },
+          null,
+          2
+        ),
+      };
+    } else {
+      console.log("Login failed")
+      return {
+        statusCode: 200,
+        body: JSON.stringify(
+          {
+            message: 'Fail',
+          },
+          null,
+          2
+        ),
+      };
+    }
+  } else {
+    console.log("Admin Account not existed")
+    return {
+      statusCode: 200,
+      body: JSON.stringify(
+        {
+          message: 'Admin Account Not Existed',
+        },
+        null,
+        2
+      ),
+    };
+  }
+}
+
 
 module.exports.add_item = async (event) => {
   const db = await connectToDB.connectToDB();

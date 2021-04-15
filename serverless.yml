@@ -105,7 +105,7 @@ functions:
     handler: item_handler.getitem
     events:
      - httpApi:
-         path: /admin/get_item
+         path: /get_item
          method: get
          cors: true 
 

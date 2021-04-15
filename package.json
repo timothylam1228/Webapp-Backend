@@ -25,6 +25,7 @@
     "mongodb": "^3.6.6",
     "mongoose": "^5.12.3",
     "serverless": "^2.35.0",
+    "serverless-http": "^2.7.0",
     "serverless-offline": "^6.9.0",
     "stripe": "^8.143.0"
   }

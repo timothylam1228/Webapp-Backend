@@ -102,7 +102,7 @@ functions:
          cors: true
 
   get_item:
-    handler: item_handler.getitem
+    handler: item_handler.get_item
     events:
      - httpApi:
          path: /get_item
@@ -118,7 +118,7 @@ functions:
          cors: true        
 
   create-checkout-session:
-    handler: create_checkout_session
+    handler: handler.create_checkout_session
     events:
      - httpApi:
         path: /create_checkout_session

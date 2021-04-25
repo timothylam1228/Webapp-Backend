@@ -20,7 +20,7 @@ app.listen(port, () => {
 
 app.get('/user/get', (req, res)=>{
   console.log('get');
-  MongoClient.connect(url, function (err, db) {
+  MongoClient.connect(url, function (err, db) {  
     if (err) throw err;
     var dbo = db.db("Webapp");
     const email = req.body.email

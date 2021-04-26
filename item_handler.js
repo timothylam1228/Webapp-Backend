@@ -19,6 +19,26 @@ module.exports.get_item = async (event) => {
       2
     ),
   };
+}
 
-
+module.exports.add_item = async (event) => {
+  const db = await connectToDB.connectToDB();
+  const collection = await db.collection("Product");
+  const body = JSON.parse(event.body);
+  collection.insert({
+      title: body.title,
+      price : body.price,
+      desc: body.desc,
+      img : body.img
+  })
+  return {
+    statusCode: 200,
+    body: JSON.stringify(
+      {
+        message: added
+      },
+      null,
+      2
+    ),
+  };
 }

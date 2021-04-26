@@ -108,6 +108,14 @@ functions:
          path: /get_item
          method: get
          cors: true 
+         
+  add_item:
+    handler: item_handler.add_item
+    events:
+    - httpApi:
+        path: /add_item
+        method: post
+        cors: true
 
   edit_item:
     handler: handler.edit_item

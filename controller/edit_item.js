@@ -5,7 +5,7 @@ const edit = (req) => {
     const body = JSON.parse(req.body);
     const item = body.Item;
     item = new Item({
-        name: item.name,
+        title: item.name,
         price: item.price,
         quantity: item.quantity
     })

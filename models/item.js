@@ -11,7 +11,7 @@ const itemSchema = new Schema({
     quantity: {
         type: 'Number'
     },
-    imagename:{
+    imagename: {
         string: 'string'
     }
 }, { timestamp: true })

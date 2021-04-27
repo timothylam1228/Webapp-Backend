@@ -121,7 +121,7 @@ functions:
     handler: handler.edit_item
     events:
      - httpApi:
-         path: /users/edit_item
+         path: /edit_item
          method: post
          cors: true        
 

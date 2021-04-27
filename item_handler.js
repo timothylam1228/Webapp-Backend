@@ -21,21 +21,18 @@ module.exports.get_item = async (event) => {
   };
 }
 
-module.exports.add_item = async (event) => {
+module.exports.edit_item = async (event) => {
   const db = await connectToDB.connectToDB();
   const collection = await db.collection("Product");
   const body = JSON.parse(event.body);
-  collection.insert({
-      title: body.title,
-      price : body.price,
-      desc: body.desc,
-      img : body.img
-  })
-  return {
+  const edited_item = await edit_item.edit(event)
+  console.log(edited_item)
+  const users = await collection.updateOne(edited_item);
+  if (users) return {
     statusCode: 200,
     body: JSON.stringify(
       {
-        message: added
+        body: seek
       },
       null,
       2

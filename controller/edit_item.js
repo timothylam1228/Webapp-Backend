@@ -2,7 +2,6 @@ const Item = require('../models/item')
 
 
 const edit = (req) => {
-    const body = JSON.parse(req.body);
     const item = body.Item;
     item = new Item({
         title: item.name,

@@ -98,8 +98,8 @@ module.exports.login = async (event) => {
       console.log("Login Sucess")
       const token = jwt.sign(
         {
-        name: seek.name,
-        type: "user"
+          name: seek.name,
+          type: "user"
         },
         'Webapp',
         { expiresIn: '24h' });
@@ -107,8 +107,8 @@ module.exports.login = async (event) => {
         statusCode: 200,
         body: JSON.stringify(
           {
-            body:{          
-              token:token,
+            body: {
+              token: token,
             },
             message: 'Sucess',
           },
@@ -194,9 +194,9 @@ module.exports.adminlogin = async (event) => {
   if (seek) {
     if (bcrypt.compareSync(body.password, seek.password)) {
       const token = jwt.sign(
-        { 
-        username: body.username,
-        type: "admin"
+        {
+          username: body.username,
+          type: "admin"
         },
         'Webapp',
         { expiresIn: '24h' });
@@ -204,8 +204,8 @@ module.exports.adminlogin = async (event) => {
         statusCode: 200,
         body: JSON.stringify(
           {
-            body:{
-              token:token,
+            body: {
+              token: token,
             },
             message: 'Sucess',
           },
@@ -284,14 +284,7 @@ module.exports.add_item = async (event) => {
   if (users) return true
 }
 
-module.exports.edit_item = async (event) => {
-  const db = await connectToDB.connectToDB();
-  const collection = await db.collection("Product");
-  const edited_item = await edit_item.edit(event)
-  console.log(edited_item)
-  const users = await collection.updateOne(edited_item);
-  if (users) return true
-}
+
 
 module.exports.create_checkout_session = async (event) => {
   console.log(event)
@@ -315,6 +308,6 @@ module.exports.create_checkout_session = async (event) => {
     success_url: 'http://localhost:3001/home',
     cancel_url: 'http://localhost:3001/home',
   });
-  
+
   return ({ id: session.id });
 }

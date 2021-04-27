@@ -1,6 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
-const MONGODB_URI = "mongodb+srv://admin:JE1BPKXM0KnAYbYy@cluster1.u7wxz.mongodb.net/User?retryWrites=true&w=majority";
-
+const MONGODB_URI = "mongodb+srv://admin:r_dK5p.xyA97K-M@webapp.qnvdp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 let cachedDB = null;
 
 module.exports.connectToDB = async () => {

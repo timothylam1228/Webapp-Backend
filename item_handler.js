@@ -27,7 +27,7 @@ module.exports.add_item = async (event) => {
   const body = JSON.parse(event.body);
   collection.insert({
       title: body.title,
-      price : body.price,
+      price : Number(body.price),
       desc: body.desc,
       img : body.img
   })
@@ -35,7 +35,7 @@ module.exports.add_item = async (event) => {
     statusCode: 200,
     body: JSON.stringify(
       {
-        message: added
+        message: "added"
       },
       null,
       2

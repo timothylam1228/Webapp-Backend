@@ -141,6 +141,14 @@ functions:
          method: post
          cors: true        
 
+  remove_item:
+    handler: item_handler.remove_item
+    events:
+      - httpApi:
+          path: /remove_item
+          method: post
+          cors: true
+
   create-checkout-session:
     handler: handler.create_checkout_session
     events:

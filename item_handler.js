@@ -26,10 +26,10 @@ module.exports.edit_item = async (event) => {
   const collection = await db.collection("Product");
   const body = JSON.parse(event.body);
   collection.insert({
-      title: body.title,
-      price : Number(body.price),
-      desc: body.desc,
-      img : body.img
+    title: body.title,
+    price: Number(body.price),
+    desc: body.desc,
+    img: body.img
   })
   return {
     statusCode: 200,

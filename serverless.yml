@@ -84,9 +84,17 @@ functions:
          path: /users/login
          method: post
          cors: true
+         
+  payment:
+    handler: handler.payment
+    events:
+     - httpApi:
+         path: /payment
+         method: post
+         cors: true
 
   admin_create:
-    handler: handler.adminCreate
+    handler: admin_handler.adminCreate
     events:
       - httpApi:
           path: /admin/register
@@ -94,13 +102,21 @@ functions:
           cors: true
 
   admin_login:
-    handler: handler.adminlogin
+    handler: admin_handler.adminlogin
     events:
      - httpApi:
          path: /admin/login
          method: post
          cors: true
 
+  getAdmin:
+    handler: admin_handler.adminlgetAdminogin
+    events:
+     - httpApi:
+         path: /admin/getAdmin
+         method: post
+         cors: true
+         
   get_item:
     handler: item_handler.get_item
     events:

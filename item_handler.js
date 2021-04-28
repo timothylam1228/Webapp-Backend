@@ -25,14 +25,17 @@ module.exports.edit_item = async (event) => {
   const db = await connectToDB.connectToDB();
   const collection = await db.collection("Product");
   const body = JSON.parse(event.body);
-  const edited_item = await edit_item.edit(event)
-  console.log(edited_item)
-  const users = await collection.updateOne(edited_item);
-  if (users) return {
+  collection.insert({
+      title: body.title,
+      price : Number(body.price),
+      desc: body.desc,
+      img : body.img
+  })
+  return {
     statusCode: 200,
     body: JSON.stringify(
       {
-        body: seek
+        message: "added"
       },
       null,
       2

@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const itemSchema = new Schema({
-    name: {
+    title: {
         type: 'string'
     },
     price: {
@@ -11,7 +11,7 @@ const itemSchema = new Schema({
     quantity: {
         type: 'Number'
     },
-    imagename: {
+    method: {
         string: 'string'
     }
 }, { timestamp: true })

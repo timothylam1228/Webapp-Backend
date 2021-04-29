@@ -4,8 +4,7 @@ const connectToDB = require('./database')
 const register = require('./controller/register')
 const bcrypt = require('bcryptjs');
 const adminRegister = require('./controller/adminRegister')
-const add_item = require('./controller/add_item')
-const edit_item = require('./controller/edit_item')
+const add_product = require('./controller/add_product')
 
 var bodyParser = require('body-parser')
 var jwt = require('jsonwebtoken');
@@ -151,11 +150,23 @@ module.exports.login = async (event) => {
 module.exports.payment = async (event) => {
   const db = await connectToDB.connectToDB();
   const collection = await db.collection("Record");
-  const added_payment = await add_payment.add(event)
-  console.log(added_payment)
-  const users = await collection.insertOne(added_payment);
-  if (users) return true
+  const body = JSON.parse(event.body);
+  const add_payment = add_product.add(body);
+  console.log(add_product)
+  const pay = await collection.insertOne(add_payment);
+  if (pay)
+    return {
+      statusCode: 200,
+      body: JSON.stringify(
+        {
+          message: 'sucess',
+        },
+        null,
+        2
+      ),
+    };
 }
+
 
 
 

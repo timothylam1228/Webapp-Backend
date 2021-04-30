@@ -4,6 +4,7 @@ const connectToDB = require('./database')
 const register = require('./controller/register')
 const bcrypt = require('bcryptjs');
 var ObjectId = require('mongodb').ObjectID;
+
 module.exports.get_item = async (event) => {
   const db = await connectToDB.connectToDB();
   const collection = await db.collection("Product");
@@ -21,7 +22,7 @@ module.exports.get_item = async (event) => {
   };
 }
 
-module.exports.edit_item = async (event) => {
+module.exports.add_item = async (event) => {
   const db = await connectToDB.connectToDB();
   const collection = await db.collection("Product");
   const body = JSON.parse(event.body);
@@ -62,3 +63,4 @@ module.exports.remove_item = async (event) => {
     ),
   };
 }
+

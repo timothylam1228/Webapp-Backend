@@ -11,7 +11,8 @@ const register = (body) => {
     const user = new User({
         email: body.email,
         name: body.name,
-        password: hash
+        password: hash,
+        record : {},
     })
     return user
 }

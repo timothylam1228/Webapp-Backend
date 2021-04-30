@@ -1,6 +1,8 @@
 'use strict';
 
 const connectToDB = require('./database')
+const adminRegister = require('./controller/adminRegister')
+
 var bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 module.exports.adminCreate = async (event) => {

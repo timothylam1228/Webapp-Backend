@@ -16,4 +16,4 @@ const adminRegister = (body) => {
     return admin
 }
 
-module.exports = {adminRegister}
+module.exports = { adminRegister }
